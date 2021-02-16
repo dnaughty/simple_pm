@@ -23,3 +23,7 @@
 
 <%= link_to 'Edit', edit_project_task_path(@task.project, @task) %> |
 <%= link_to 'Back', project_tasks_path(@task.project) %>
+
+<h1>New Task</h1>
+
+<%= render 'tasks/form' %>
