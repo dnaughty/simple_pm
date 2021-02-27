@@ -1,6 +1,6 @@
-<%= link_to 'Back', projects_path, class: 'btn btn-light mb-3' %>
+<%= link_to 'Back', projects_path, class: 'btn btn-secondary mb-3' %>
 
-<hr>
+
 
 <div class="card">
    <div class="card-body">
@@ -31,6 +31,8 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :status, value: 'not-started' %>
+
   <div class="input-group">
    
     <%= f.text_field :name, class: 'form-control', placeholder: "Enter task name" %>
@@ -46,13 +48,14 @@
 <h4>Tasks</h4>
 <% @project.tasks.each do |task| %>
 <% if task.persisted? %>
-  <div class="card">
+  <div class="card mb-3">
     <div class="card-body">
-      <span class="badge badge-primary"><%= task.status %></span>
+      <span class="badge badge-<%= task.badge_color %> mb-3"><%= task.status %></span>
       <h5><%= task.name %></h5>
 
        <%= link_to 'Show', [task.project, task] %>
       <%= link_to 'Edit', edit_project_task_path(task.project, task) %>
+      <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-dark btn-sm' %>
       <p><%= task.description %></p>
     </div>
   </div>
